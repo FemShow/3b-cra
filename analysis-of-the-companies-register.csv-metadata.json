@@ -1,0 +1,890 @@
+{
+    "@context": "http://www.w3.org/ns/csvw",
+    "@id": "analysis-of-the-companies-register.csv#dataset",
+    "tables": [
+        {
+            "url": "analysis-of-the-companies-register.csv",
+            "tableSchema": {
+                "columns": [
+                    {
+                        "titles": "All Companies",
+                        "name": "all_companies",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#dimension/all-companies",
+                        "valueUrl": "all-companies.csv#{+all_companies}",
+                        "required": true
+                    },
+                    {
+                        "titles": "Countries",
+                        "name": "countries",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#dimension/countries",
+                        "valueUrl": "countries.csv#{+countries}",
+                        "required": true
+                    },
+                    {
+                        "titles": "Year",
+                        "name": "year",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#dimension/government-year",
+                        "valueUrl": "government-year.csv#{+year}",
+                        "required": true
+                    },
+                    {
+                        "titles": "Value",
+                        "name": "value",
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#measure/value",
+                        "datatype": "integer",
+                        "required": false
+                    },
+                    {
+                        "titles": "Value-obsStatus",
+                        "name": "value_obsstatus",
+                        "suppressOutput": true
+                    },
+                    {
+                        "titles": "Change",
+                        "name": "change",
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#attribute/observation-status",
+                        "valueUrl": "analysis-of-the-companies-register.csv#attribute/observation-status/{+change}",
+                        "required": false
+                    },
+                    {
+                        "titles": "Change-obsStatus",
+                        "name": "change_obsstatus",
+                        "suppressOutput": true
+                    },
+                    {
+                        "name": "virt_slice",
+                        "virtual": true,
+                        "propertyUrl": "rdf:type",
+                        "valueUrl": "qb:Slice"
+                    },
+                    {
+                        "name": "virt_slice_structure",
+                        "virtual": true,
+                        "propertyUrl": "qb:sliceStructure",
+                        "valueUrl": "analysis-of-the-companies-register.csv#slice/cross-measures"
+                    },
+                    {
+                        "name": "virt_obs_value",
+                        "virtual": true,
+                        "propertyUrl": "qb:observation",
+                        "valueUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value"
+                    },
+                    {
+                        "name": "virt_obs_value_meas",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "qb:measureType",
+                        "valueUrl": "analysis-of-the-companies-register.csv#measure/value"
+                    },
+                    {
+                        "name": "virt_obs_value_unit",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure",
+                        "valueUrl": "analysis-of-the-companies-register.csv#unit/number"
+                    },
+                    {
+                        "name": "virt_dim_value_all_companies",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#dimension/all-companies",
+                        "valueUrl": "all-companies.csv#{+all_companies}"
+                    },
+                    {
+                        "name": "virt_dim_value_countries",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#dimension/countries",
+                        "valueUrl": "countries.csv#{+countries}"
+                    },
+                    {
+                        "name": "virt_dim_value_year",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "analysis-of-the-companies-register.csv#dimension/government-year",
+                        "valueUrl": "government-year.csv#{+year}"
+                    },
+                    {
+                        "name": "virt_obs_value_type",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "rdf:type",
+                        "valueUrl": "qb:Observation"
+                    },
+                    {
+                        "name": "virt_dataSet_value",
+                        "virtual": true,
+                        "aboutUrl": "analysis-of-the-companies-register.csv#obs/{all_companies},{countries},{year}@value",
+                        "propertyUrl": "qb:dataSet",
+                        "valueUrl": "analysis-of-the-companies-register.csv#dataset"
+                    }
+                ],
+                "foreignKeys": [
+                    {
+                        "columnReference": "all_companies",
+                        "reference": {
+                            "resource": "all-companies.csv",
+                            "columnReference": "uri_identifier"
+                        }
+                    },
+                    {
+                        "columnReference": "countries",
+                        "reference": {
+                            "resource": "countries.csv",
+                            "columnReference": "uri_identifier"
+                        }
+                    },
+                    {
+                        "columnReference": "year",
+                        "reference": {
+                            "resource": "government-year.csv",
+                            "columnReference": "uri_identifier"
+                        }
+                    }
+                ],
+                "primaryKey": [
+                    "all_companies",
+                    "countries",
+                    "year"
+                ],
+                "aboutUrl": "analysis-of-the-companies-register.csv#slice/{all_companies},{countries},{year}"
+            }
+        },
+        {
+            "url": "all-companies.csv",
+            "tableSchema": "all-companies.table.json",
+            "suppressOutput": true
+        },
+        {
+            "url": "countries.csv",
+            "tableSchema": "countries.table.json",
+            "suppressOutput": true
+        },
+        {
+            "url": "government-year.csv",
+            "tableSchema": "government-year.table.json",
+            "suppressOutput": true
+        }
+    ],
+    "rdfs:seeAlso": [
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/all-companies",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/all-companies"
+                }
+            ],
+            "http://purl.org/linked-data/cube#dimension": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/all-companies"
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 1
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/measure-type",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://purl.org/linked-data/cube#measureType"
+                }
+            ],
+            "http://purl.org/linked-data/cube#dimension": [
+                {
+                    "@id": "http://purl.org/linked-data/cube#measureType"
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 4
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#class/government-year",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Class",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dimension/countries",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DimensionProperty",
+                "http://purl.org/linked-data/cube#CodedProperty",
+                "http://purl.org/linked-data/cube#ComponentProperty",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+            ],
+            "http://purl.org/linked-data/cube#codeList": [
+                {
+                    "@id": "countries.csv#code-list"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Countries"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#range": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#class/countries"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#measure/value",
+            "@type": [
+                "http://purl.org/linked-data/cube#MeasureProperty",
+                "http://purl.org/linked-data/cube#ComponentProperty",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#comment": [
+                {
+                    "@language": "en",
+                    "@value": "Number of registered Companies"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Value"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#range": [
+                {
+                    "@id": "http://www.w3.org/2001/XMLSchema#integer"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+                {
+                    "@id": "https://purl.org/csv-cubed/resources/measures#count"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dataset",
+            "@type": [
+                "http://www.w3.org/ns/dcat#Resource",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#Attachable",
+                "http://www.w3.org/ns/dcat#Dataset",
+                "http://purl.org/linked-data/cube#DataSet"
+            ],
+            "http://purl.org/dc/terms/creator": [
+                {
+                    "@id": "https://www.gov.uk/government/organisations/companies-house"
+                }
+            ],
+            "http://purl.org/dc/terms/description": [
+                {
+                    "@type": "https://www.w3.org/ns/iana/media-types/text/markdown#Resource",
+                    "@value": "1. Unless otherwise stated, 'Companies' refers to companies registered under the Companies Act 2006. 2. There may be minor discrepancies when calculating the number of companies on the register (on the register at start of period, plus incorporations plus restorations minus dissolved companies). Similar discrepancies may be experienced when comparing data across other tables within this report. This is due to slight scheduling variations when extracting the data. 3. The figures provided in these tables differ from other data / statistics held and published by Companies House, which include our URI statistics, Mobile Telephone App statistics, the free bulk products data and the API. This is due to differences in the types of company included in the figures: the figures presented here focus on Companies Act 2006 companies only while others include wider corporate body types. 4. Companies registered in the Channel Islands and the Isle of Man are excluded from the UK Companies Register."
+                }
+            ],
+            "http://purl.org/dc/terms/identifier": [
+                {
+                    "@value": "Analysis of the Companies Register"
+                }
+            ],
+            "http://purl.org/dc/terms/issued": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2022-03-31T00:00:00"
+                }
+            ],
+            "http://purl.org/dc/terms/license": [
+                {
+                    "@id": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+                }
+            ],
+            "http://purl.org/dc/terms/modified": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "@value": "2022-03-31T00:00:00"
+                }
+            ],
+            "http://purl.org/dc/terms/publisher": [
+                {
+                    "@id": "https://www.gov.uk/government/organisations/companies-house"
+                }
+            ],
+            "http://purl.org/dc/terms/title": [
+                {
+                    "@language": "en",
+                    "@value": "Analysis of the Companies Register"
+                }
+            ],
+            "http://purl.org/linked-data/cube#structure": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#structure"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#comment": [
+                {
+                    "@language": "en",
+                    "@value": "Summary of changes in the number of companies on the register, 2012-13 to 2021-22"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Analysis of the Companies Register"
+                }
+            ],
+            "http://www.w3.org/ns/dcat#keyword": [
+                {
+                    "@language": "en",
+                    "@value": "limited"
+                },
+                {
+                    "@language": "en",
+                    "@value": "companieshouse"
+                },
+                {
+                    "@language": "en",
+                    "@value": "liability"
+                },
+                {
+                    "@language": "en",
+                    "@value": "company"
+                },
+                {
+                    "@language": "en",
+                    "@value": "companies"
+                },
+                {
+                    "@language": "en",
+                    "@value": "corporate"
+                }
+            ],
+            "http://www.w3.org/ns/dcat#theme": [
+                {
+                    "@id": "https://www.ons.gov.uk/economy/economicoutputandproductivity"
+                }
+            ],
+            "http://www.w3.org/ns/prov#wasGeneratedBy": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#csvcubed-build-activity"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/value",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#measure/value"
+                }
+            ],
+            "http://purl.org/linked-data/cube#measure": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#measure/value"
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 6
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dimension/government-year",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DimensionProperty",
+                "http://purl.org/linked-data/cube#CodedProperty",
+                "http://purl.org/linked-data/cube#ComponentProperty",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+            ],
+            "http://purl.org/linked-data/cube#codeList": [
+                {
+                    "@id": "government-year.csv#code-list"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Government Year"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#range": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#class/government-year"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#class/countries",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Class",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/observation-status",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#attribute": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#attribute/observation-status"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#attribute/observation-status"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentRequired": [
+                {
+                    "@value": false
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 7
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#csvcubed-build-activity",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://www.w3.org/ns/prov#Activity"
+            ],
+            "http://www.w3.org/ns/prov#used": [
+                {
+                    "@id": "https://github.com/GSS-Cogs/csvcubed/releases/tag/v0.4.4"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#structure",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DataStructureDefinition"
+            ],
+            "http://purl.org/linked-data/cube#component": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/government-year"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/unit"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/all-companies"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/value"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/measure-type"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/observation-status"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#component/countries"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/government-year"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#measure/value"
+                },
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/countries"
+                },
+                {
+                    "@id": "http://purl.org/linked-data/cube#measureType"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/all-companies"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#attribute/observation-status"
+                }
+            ],
+            "http://purl.org/linked-data/cube#sliceKey": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#slice/cross-measures"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#class/all-companies",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Class",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/unit",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#attribute": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#unitMeasure"
+                }
+            ],
+            "http://purl.org/linked-data/cube#componentRequired": [
+                {
+                    "@value": true
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 5
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentProperty",
+                "http://purl.org/linked-data/cube#AttributeProperty",
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Observation Status"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#subPropertyOf": [
+                {
+                    "@id": "http://purl.org/linked-data/sdmx/2009/attribute#obsStatus"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/countries",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/countries"
+                }
+            ],
+            "http://purl.org/linked-data/cube#dimension": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/countries"
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 2
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#component/government-year",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSpecification",
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/government-year"
+                }
+            ],
+            "http://purl.org/linked-data/cube#dimension": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/government-year"
+                }
+            ],
+            "http://purl.org/linked-data/cube#order": [
+                {
+                    "@value": 3
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dimension/all-companies",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource",
+                "http://purl.org/linked-data/cube#DimensionProperty",
+                "http://purl.org/linked-data/cube#CodedProperty",
+                "http://purl.org/linked-data/cube#ComponentProperty",
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
+            ],
+            "http://purl.org/linked-data/cube#codeList": [
+                {
+                    "@id": "all-companies.csv#code-list"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "All Companies"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#range": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#class/all-companies"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#slice/cross-measures",
+            "@type": [
+                "http://purl.org/linked-data/cube#ComponentSet",
+                "http://purl.org/linked-data/cube#SliceKey",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://purl.org/linked-data/cube#componentProperty": [
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/government-year"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/all-companies"
+                },
+                {
+                    "@id": "analysis-of-the-companies-register.csv#dimension/countries"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dependency/all-companies",
+            "@type": [
+                "http://rdfs.org/ns/void#Dataset",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://rdfs.org/ns/void#dataDump": [
+                {
+                    "@id": "./all-companies.csv-metadata.json"
+                }
+            ],
+            "http://rdfs.org/ns/void#uriSpace": [
+                {
+                    "@value": "all-companies.csv#"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dependency/countries",
+            "@type": [
+                "http://rdfs.org/ns/void#Dataset",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://rdfs.org/ns/void#dataDump": [
+                {
+                    "@id": "./countries.csv-metadata.json"
+                }
+            ],
+            "http://rdfs.org/ns/void#uriSpace": [
+                {
+                    "@value": "countries.csv#"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#dependency/government-year",
+            "@type": [
+                "http://rdfs.org/ns/void#Dataset",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://rdfs.org/ns/void#dataDump": [
+                {
+                    "@id": "./government-year.csv-metadata.json"
+                }
+            ],
+            "http://rdfs.org/ns/void#uriSpace": [
+                {
+                    "@value": "government-year.csv#"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-01",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.01"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-02",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.02"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-03",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.03"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-04",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.04"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-05",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.05"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-06",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.06"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-07",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.07"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-08",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.08"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#attribute/observation-status/0-09",
+            "@type": [
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "0.09"
+                }
+            ]
+        },
+        {
+            "@id": "analysis-of-the-companies-register.csv#unit/number",
+            "@type": [
+                "http://www.ontology-of-units-of-measure.org/resource/om-2/Unit",
+                "http://qudt.org/schema/qudt/Unit",
+                "http://www.w3.org/2000/01/rdf-schema#Resource"
+            ],
+            "http://qudt.org/schema/qudt/isScalingOf": [
+                {
+                    "@id": "http://qudt.org/vocab/unit/NUM"
+                }
+            ],
+            "http://www.ontology-of-units-of-measure.org/resource/om-2/hasFactor": [
+                {
+                    "@type": "http://www.w3.org/2001/XMLSchema#float",
+                    "@value": "1.0"
+                }
+            ],
+            "http://www.ontology-of-units-of-measure.org/resource/om-2/hasUnit": [
+                {
+                    "@id": "http://qudt.org/vocab/unit/NUM"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#isDefinedBy": [
+                {
+                    "@id": "http://qudt.org/vocab/unit/NUM"
+                }
+            ],
+            "http://www.w3.org/2000/01/rdf-schema#label": [
+                {
+                    "@language": "en",
+                    "@value": "Number"
+                }
+            ]
+        }
+    ]
+}

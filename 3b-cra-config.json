@@ -1,0 +1,53 @@
+{
+    "$schema": "https://purl.org/csv-cubed/qube-config/v1",
+    "title": "Analysis of the Companies Register",
+    "summary": "Summary of changes in the number of companies on the register, 2012-13 to 2021-22",
+    "description": "1. Unless otherwise stated, 'Companies' refers to companies registered under the Companies Act 2006. 2. There may be minor discrepancies when calculating the number of companies on the register (on the register at start of period, plus incorporations plus restorations minus dissolved companies). Similar discrepancies may be experienced when comparing data across other tables within this report. This is due to slight scheduling variations when extracting the data. 3. The figures provided in these tables differ from other data / statistics held and published by Companies House, which include our URI statistics, Mobile Telephone App statistics, the free bulk products data and the API. This is due to differences in the types of company included in the figures: the figures presented here focus on Companies Act 2006 companies only while others include wider corporate body types. 4. Companies registered in the Channel Islands and the Isle of Man are excluded from the UK Companies Register.",
+    "license": "http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "public_contact_point_uri": "mailto:statistics@companieshouse.gov.uk",
+    "themes": "https://www.ons.gov.uk/economy/economicoutputandproductivity",
+    "publisher": "https://www.gov.uk/government/organisations/companies-house",
+    "creator": "https://www.gov.uk/government/organisations/companies-house",
+    "dataset_issued": "2022-03-31T00:00:00Z",
+    "dataset_modified": "2022-03-31T00:00:00Z",
+    "keywords": [
+        "companies",
+        "companieshouse",
+        "liability",
+        "limited",
+        "company",
+        "corporate"  
+    ],
+    "columns":{
+        "All Companies":{
+            "type": "dimension",
+            "label": "All Companies"
+         },
+         "Countries":{
+          "type": "dimension",
+          "label": "Countries"
+       },
+        "Year":{
+            "from_template": "government-year"
+          },
+        "Value": {
+            "type": "observations",
+            "measure": {
+              "label": "Value",
+              "description": "Number of registered Companies",
+              "from_existing": "https://purl.org/csv-cubed/resources/measures#count"
+            },
+            "data_type": "integer",
+            "unit": {
+              "label": "Number",
+              "from_existing": "http://qudt.org/vocab/unit/NUM"
+            }
+          },
+        "Value-obsStatus":false,
+      "Change": {
+        "from_template": "observation-status",
+        "describes_observations": "Value"
+    },
+      "Change-obsStatus":false
+  }
+}
